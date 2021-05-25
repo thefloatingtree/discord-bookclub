@@ -5,7 +5,7 @@ module.exports.getLoginCookies = async (username, password) => {
     const passwordSelector = 'body > div.body-layout > div.body_container > div:nth-child(4) > div.content > div > div.left.tab-content.tab-content-selected > div > div > div > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=password]'
     const loginSelector = 'body > div.body-layout > div.body_container > div:nth-child(4) > div.content > div > div.left.tab-content.tab-content-selected > div > div > div > form > table > tbody > tr:nth-child(4) > td:nth-child(2) > button'
 
-    const browser = await puppeteer.launch({ headless: true })
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
     const page = await browser.newPage()
     await page.goto('https://www.fimfiction.net/login')
 
@@ -33,7 +33,7 @@ module.exports.getLoginCookies = async (username, password) => {
 }
 
 module.exports.goToPageWithCookies = async (url, cookies) => {
-    const browser = await puppeteer.launch({ headless: true })
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
     const page = await browser.newPage()
     await page.setCookie(...cookies)
 
